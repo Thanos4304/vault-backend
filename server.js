@@ -33,7 +33,6 @@ const generateToken = (user) => {
 
 app.get('/hello',(req,res)=>{
     res.send("bro");
-
 })
 // Register endpoint
 app.post('/api/register', async (req, res) => {
