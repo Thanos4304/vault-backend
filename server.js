@@ -87,6 +87,27 @@ app.get('/api/protected', authenticateToken, (req, res) => {
   res.json({ message: 'This is a protected route', user: req.user });
 });
 
+app.get('/api/profile', authenticateToken, async(req, res) => {
+var id = req.user.id
+  //res.json({ message: 'This is a protected route', user: req.user });
+  //console.log(req.user)
+  try {
+    const result = await pool.query('SELECT username,email FROM users WHERE id = $1', [id]);
+    const profile = result.rows[0];
+
+    if (!profile) {
+      return res.status(400).json({ error: 'Invalid Id for profile' });
+    }
+
+    res.json({ profile });
+  } 
+  catch (err) {
+    console.error('Error logging in:', err);
+    res.status(500).json({ error: 'Login failed' });
+  }
+});
+
+
 // Middleware to authenticate JWT
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
