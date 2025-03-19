@@ -19,7 +19,15 @@ const pool = new Pool({
 
 // Middleware to parse JSON
 app.use(express.json());
-app.use(cors());
+
+const corsOptions = {
+  origin: 'http://localhost:4200', // Replace with your frontend URL
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+};
+
+
+app.use(cors(corsOptions));
 
 // Secret key for JWT
 const JWT_SECRET = 'your_jwt_secret_key';
