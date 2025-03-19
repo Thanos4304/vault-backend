@@ -21,7 +21,7 @@ const pool = new Pool({
 app.use(express.json());
 
 const corsOptions = {
-  origin: ['http://localhost:4200','https://vault-backend-ahkf.onrender.com'], // Replace with your frontend URL
+  origin: ['http://localhost:4200','https://vvaultx.netlify.app'], // Replace with your frontend URL
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 };
